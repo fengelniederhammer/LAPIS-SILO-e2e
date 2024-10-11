@@ -49,8 +49,10 @@ jobs:
                       {{eventName}}
                       env
                       {{env.IM_HERE}}
-                      steps output
+                      steps
                       ${{ steps.test }}
+                      steps output
+                      ${{ steps.test.outputs }}
                       ---
                       {{github.event}}
                       {{steps.test}}
