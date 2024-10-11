@@ -57,27 +57,21 @@ jobs:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   title-template: My title
                   body-template: |
-                      My Body
-                      {{runNumber}}
-                      payload
-                      {{payload}}
-                      event name
-                      {{eventName}}
-                      
+                      Tests failed!
+                    
                       steps
-                      ${{ toJSON(steps.test-results2) }}
-                      steps output
-                      ${{ toJSON(steps.test-results2.outputs) }}
+                      ${{ toJSON(steps) }}
+                      Github
+                      ${{ toJSON(github) }}
                       
-                      steps
-                      ${{ toJSON(steps.test-results) }}
-                      steps output
-                      ${{ toJSON(steps.test-results.outputs) }}
                       
+                      <details>
+                      <summary>Expand to see test output</summary>
+                      ${{ steps.test-results.outputs.test-output }}
+                      </details>
                       ---
                       
-                      {{github.event}}
-                      {{steps.test}}
+                      ${{github.event}}
                       End body
 
 #    check-format:
