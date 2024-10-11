@@ -38,19 +38,23 @@ jobs:
               uses: jayqi/failed-build-issue-action@v1
               if: failure()
               with:
-                github-token: ${{ secrets.GITHUB_TOKEN }}
-                title-template: My title
-                body-template: |
-                    My Body
-                    {{runNumber}}
-                    payload
-                    {{payload}}
-                    event name
-                    {{eventName}}
-                    ---
-                    {{github.event}}
-                    {{steps.test}}
-                    End body
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  title-template: My title
+                  body-template: |
+                      My Body
+                      {{runNumber}}
+                      payload
+                      {{payload}}
+                      event name
+                      {{eventName}}
+                      env
+                      {{env.IM_HERE}}
+                      ---
+                      {{github.event}}
+                      {{steps.test}}
+                      End body
+              env:
+                  IM_HERE: 'hello from env'
 
 #    check-format:
 #        name: Check format
