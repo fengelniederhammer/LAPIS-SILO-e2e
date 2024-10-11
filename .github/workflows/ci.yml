@@ -2,7 +2,7 @@ name: LAPIS-SILO E2E Tests
 on:
   push:
   schedule:
-    - cron: '22 * * * *'
+    - cron: '30 * * * *'
 
 
 jobs:
