@@ -46,8 +46,9 @@ jobs:
               if: failure()
               id: test-results
               run: |
-                  echo "test-output=" >> $GITHUB_OUTPUT
+                  echo "test-output<<EOF" >> $GITHUB_OUTPUT
                   cat test_output.txt >> $GITHUB_OUTPUT
+                  echo "EOF" >> $GITHUB_OUTPUT
 
             - name: Notify failed build
               uses: jayqi/failed-build-issue-action@v1
