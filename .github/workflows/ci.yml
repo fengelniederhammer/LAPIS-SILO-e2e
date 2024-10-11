@@ -38,7 +38,7 @@ jobs:
               id: test-results
               run: |
                 cat test-output.txt >> $GITHUB_OUTPUT
-                test ${PIPESTATUS[0]}
+                test ${PIPESTATUS[0]} -eq 0
             - name: Notify failed build
               uses: jayqi/failed-build-issue-action@v1
               if: failure()
