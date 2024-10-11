@@ -22,7 +22,7 @@ jobs:
 #              run: pnpm i
             - name: test
               id: test
-              run: npm run test | tee test-output.txt
+              run: npm run fail | tee test-output.txt
 #              run: |
 #                  npm run fail > test_output.txt
 #                  exit_code=$?
