@@ -22,16 +22,21 @@ jobs:
 #              run: pnpm i
             - name: test
               id: test
-              run: |
-                  npm run fail > test_output.txt
-                  exit_code=$?
-                  echo "test-output<<EOF" >> $GITHUB_OUTPUT
-                  cat test_output.txt >> $GITHUB_OUTPUT
-                  echo "EOF" >> $GITHUB_OUTPUT
-                  exit $exit_code
-              env:
-                  LAPIS_TAG: latest
-                  SILO_TAG: latest
+              run: npm run test | tee test-output.txt
+#              run: |
+#                  npm run fail > test_output.txt
+#                  exit_code=$?
+#                  echo "test-output<<EOF" >> $GITHUB_OUTPUT
+#                  cat test_output.txt >> $GITHUB_OUTPUT
+#                  echo "EOF" >> $GITHUB_OUTPUT
+#                  exit $exit_code
+#              env:
+#                  LAPIS_TAG: latest
+#                  SILO_TAG: latest
+            - name: Retrieve test results
+              if: failure()
+              id: test-results
+              run: cat test-output.txt >> $GITHUB_OUTPUT
             - name: Notify failed build
               uses: jayqi/failed-build-issue-action@v1
               if: failure()
