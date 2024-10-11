@@ -23,17 +23,12 @@ jobs:
             - name: test
               id: test
               run: |
-                  echo "oh oh the tests failed!"
+                  echo "oh oh the tests failed!" > test_output.txt
+                  echo "test-output=$(cat test_output.txt)" >> GITHUB_OUTPUT
                   exit 1
               env:
                   LAPIS_TAG: latest
                   SILO_TAG: latest
-#            - name: Upload test results
-#              uses: actions/upload-artifact@v4
-#              if: always()
-#              with:
-#                  name: test-results
-#                  path: testsets/**/output
             - name: Notify failed build
               uses: jayqi/failed-build-issue-action@v1
               if: failure()
@@ -58,8 +53,6 @@ jobs:
                       {{github.event}}
                       {{steps.test}}
                       End body
-              env:
-                  IM_HERE: 'hello from env'
 
 #    check-format:
 #        name: Check format
