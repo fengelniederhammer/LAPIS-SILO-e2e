@@ -12,10 +12,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
-#            - name: Use Node.js
-#              uses: actions/setup-node@v4
-#              with:
-#                  node-version-file: '.nvmrc'
+            - name: Use Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version-file: '.nvmrc'
 #            - name: prepare pnpm
 #              run: npm i -g pnpm
 #            - name: pnpm i
@@ -23,9 +23,10 @@ jobs:
             - name: test
               id: test
               run: |
-                  echo "oh oh the tests failed!" > test_output.txt
-                  echo "test-output=$(cat test_output.txt)" >> $GITHUB_OUTPUT
-                  exit 1
+                  npm run fail | tee test_output.txt
+                  echo "test-output<<EOF" >> $GITHUB_ENV
+                  cat test_output.txt >> $GITHUB_ENV
+                  echo "EOF" >> $GITHUB_ENV
               env:
                   LAPIS_TAG: latest
                   SILO_TAG: latest

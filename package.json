@@ -13,7 +13,8 @@
         "dockerUp": "tsx dockerUp.ts",
         "dockerDown": "tsx dockerDown.ts",
         "generate": "tsx generate.ts",
-        "testRunner": "vitest --reporter=html --reporter=default"
+        "testRunner": "vitest --reporter=html --reporter=default",
+        "fail": "echo 'Failure' && exit 1"
     },
     "type": "module",
     "devDependencies": {
