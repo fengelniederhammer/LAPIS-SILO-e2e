@@ -60,20 +60,16 @@ jobs:
                   body-template: |
                       Tests failed!
                     
-                      steps
-                      ${{ toJSON(steps) }}
-                      Github
-                      ${{ toJSON(github) }}
-                      
+                      Ref: ${{ github.ref }}
+                      Sha: ${{ github.sha }}
+                      Run number ${{ github.run_number }}, attempt ${{ github.run_attempt }}
+                    
+                      ${{ github.event.repository.url }}/actions/runs/${{ github.run_id }}
                       
                       <details>
                       <summary>Expand to see test output</summary>
                       ${{ steps.test-results.outputs.test-output }}
                       </details>
-                      ---
-                      
-                      ${{github.event}}
-                      End body
 
 #    check-format:
 #        name: Check format
