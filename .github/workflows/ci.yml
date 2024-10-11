@@ -1,10 +1,7 @@
 name: LAPIS-SILO E2E Tests
 on:
-
-  workflow_dispatch:
-  pull_request:
-
-  push:
+  schedule:
+    - cron: '* * * * *'
 
 
 jobs:
@@ -42,6 +39,16 @@ jobs:
               id: test-results2
               run: |
                   echo "test-output2=asdlfkjasdf" >> $GITHUB_OUTPUT
+
+            - name: output event
+              if: always()
+              run: |
+                  ${{ toJson(github.event) }}
+
+            - name: output schedule event
+              if: always()
+              run: |
+                  ${{ toJson(github.event.schedule) }}
 
             - name: Retrieve test results
               if: failure()
