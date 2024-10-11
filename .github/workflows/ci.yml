@@ -22,7 +22,10 @@ jobs:
 #              run: pnpm i
             - name: test
               id: test
-              run: npm run fail | tee test-output.txt
+              run: |
+                  npm run fail | tee test-output.txt
+                  test ${PIPESTATUS[0]} -eq 0
+
 #              run: |
 #                  npm run fail > test_output.txt
 #                  exit_code=$?
@@ -33,12 +36,12 @@ jobs:
 #              env:
 #                  LAPIS_TAG: latest
 #                  SILO_TAG: latest
+
             - name: Retrieve test results
               if: failure()
               id: test-results
-              run: |
-                cat test-output.txt >> $GITHUB_OUTPUT
-                test ${PIPESTATUS[0]} -eq 0
+              run: cat test-output.txt >> $GITHUB_OUTPUT
+
             - name: Notify failed build
               uses: jayqi/failed-build-issue-action@v1
               if: failure()
