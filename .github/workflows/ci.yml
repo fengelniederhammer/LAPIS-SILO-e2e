@@ -2,7 +2,7 @@ name: LAPIS-SILO E2E Tests
 on:
   push:
   schedule:
-    - cron: '0/5 * * * *'
+    - cron: '14 * * * *'
 
 
 jobs:
@@ -68,9 +68,9 @@ jobs:
               if: failure()
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
-                  title-template: My title
+                  title-template: Test Run Failure (Automatic Report)
                   body-template: |
-                      Tests failed!
+                      The end-to-end tests failed on the following run:
                     
                       Ref: ${{ github.ref }}
                       Sha: ${{ github.sha }}
