@@ -22,8 +22,9 @@ jobs:
               run: pnpm i
             - name: test
               id: test
+#                pnpm test | tee test_output.txt
               run: |
-                  pnpm test | tee test_output.txt
+                  npm run fail | tee test_output.txt
                   test ${PIPESTATUS[0]} -eq 0
 
 #              run: |
