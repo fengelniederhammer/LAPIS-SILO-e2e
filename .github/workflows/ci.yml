@@ -24,9 +24,11 @@ jobs:
               id: test
               run: |
                   npm run fail | tee test_output.txt
+                  exit_code=$?
                   echo "test-output<<EOF" >> $GITHUB_ENV
                   cat test_output.txt >> $GITHUB_ENV
                   echo "EOF" >> $GITHUB_ENV
+                  exit $exit_code
               env:
                   LAPIS_TAG: latest
                   SILO_TAG: latest
