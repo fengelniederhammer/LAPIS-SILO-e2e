@@ -24,7 +24,7 @@ jobs:
               id: test
               run: |
                   echo "oh oh the tests failed!" > test_output.txt
-                  echo "test-output=$(cat test_output.txt)" >> GITHUB_OUTPUT
+                  echo "test-output=$(cat test_output.txt)" >> $GITHUB_OUTPUT
                   exit 1
               env:
                   LAPIS_TAG: latest
