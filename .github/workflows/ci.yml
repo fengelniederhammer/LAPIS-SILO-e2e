@@ -47,13 +47,14 @@ jobs:
                       {{payload}}
                       event name
                       {{eventName}}
-                      env
-                      {{env.IM_HERE}}
+                      
                       steps
-                      ${{ steps.test }}
+                      ${{ toJSON(steps.test) }}
                       steps output
-                      ${{ steps.test.outputs }}
+                      ${{ toJSON(steps.test.outputs) }}
+                      
                       ---
+                      
                       {{github.event}}
                       {{steps.test}}
                       End body
