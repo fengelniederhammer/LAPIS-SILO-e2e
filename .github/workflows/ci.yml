@@ -41,7 +41,6 @@ jobs:
               if: failure()
               id: test-results
               run: |
-                  echo "test-output2=asdlfkjasdf" >> $GITHUB_OUTPUT
                   echo "test-output=$(cat test_output.txt)" >> $GITHUB_OUTPUT
 
             - name: Notify failed build
