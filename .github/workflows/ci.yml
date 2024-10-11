@@ -1,7 +1,8 @@
 name: LAPIS-SILO E2E Tests
 on:
+  push:
   schedule:
-    - cron: '* * * * *'
+    - cron: '0/5 * * * *'
 
 
 jobs:
@@ -39,6 +40,10 @@ jobs:
               id: test-results2
               run: |
                   echo "test-output2=asdlfkjasdf" >> $GITHUB_OUTPUT
+
+            - name: Only on schedule
+              if: github.event_name == 'schedule'
+              run: echo "This job was triggered by a schedule event."
 
             - name: output event
               if: always()
