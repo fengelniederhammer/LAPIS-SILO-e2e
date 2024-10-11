@@ -16,14 +16,14 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version-file: '.nvmrc'
-#            - name: prepare pnpm
-#              run: npm i -g pnpm
-#            - name: pnpm i
-#              run: pnpm i
+            - name: prepare pnpm
+              run: npm i -g pnpm
+            - name: pnpm i
+              run: pnpm i
             - name: test
               id: test
               run: |
-                  npm run fail | tee test_output.txt
+                  pnpm test | tee test_output.txt
                   test ${PIPESTATUS[0]} -eq 0
 
 #              run: |
