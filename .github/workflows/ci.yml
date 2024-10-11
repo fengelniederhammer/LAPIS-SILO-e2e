@@ -38,6 +38,11 @@ jobs:
 #                  SILO_TAG: latest
 
             - name: Retrieve test results
+              id: test-results2
+              run: |
+                  echo "test-output2=asdlfkjasdf" >> $GITHUB_OUTPUT
+
+            - name: Retrieve test results
               if: failure()
               id: test-results
               run: |
@@ -58,9 +63,14 @@ jobs:
                       {{eventName}}
                       
                       steps
-                      ${{ toJSON(steps.test) }}
+                      ${{ toJSON(steps.test-results2) }}
                       steps output
-                      ${{ toJSON(steps.test.outputs) }}
+                      ${{ toJSON(steps.test-results2.outputs) }}
+                      
+                      steps
+                      ${{ toJSON(steps.test-results) }}
+                      steps output
+                      ${{ toJSON(steps.test-results.outputs) }}
                       
                       ---
                       
